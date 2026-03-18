@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Déverrouillage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #111;
+            color: #fff;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 20px;
+            width: 150px;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #hiddenContent {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 10px;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Entrez le code à 6 chiffres</h1>
+
+    <input type="text" id="codeInput" maxlength="6" placeholder="******">
+    <br>
+    <button onclick="checkCode()">Valider</button>
+
+    <div id="message" class="error"></div>
+
+    <div id="hiddenContent">
+        <h2>Contenu débloqué 🔓</h2>
+        <p>La peluche se trouve dans la poche avant de ton sac à dos.</p>
+    </div>
+
+    <script>
+        const correctCode = "730160"; // <-- Code à modifier
+
+        function checkCode() {
+            const input = document.getElementById("codeInput").value;
+            const message = document.getElementById("message");
+            const content = document.getElementById("hiddenContent");
+
+            if (!/^\d{6}$/.test(input)) {
+                message.textContent = "Veuillez entrer exactement 6 chiffres.";
+                content.style.display = "none";
+                return;
+            }
+
+            if (input === correctCode) {
+                message.textContent = "";
+                content.style.display = "block";
+            } else {
+                message.textContent = "Code incorrect.";
+                content.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
